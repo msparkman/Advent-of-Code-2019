@@ -7,18 +7,26 @@ namespace code
     {
         static void Main(string[] args)
         {
-            var calculator = new FuelCalculator();
-            string[] moduleMassArray = System.IO.File.ReadAllLines(@"ModuleMasses.txt");
-           
-            int sum = 0;
-            foreach (var moduleMass in moduleMassArray)
+            string fileString = System.IO.File.ReadAllText(@"Intcodes.txt");
+            string[] stringArray = fileString.Split(',');
+
+
+            int[] intcodeArray = new int[stringArray.Length];
+            int index = 0;
+            foreach (var stringIntcode in stringArray)
             {
-                int requiredFuel = calculator.calculate(Convert.ToDecimal(moduleMass));
-                sum += requiredFuel;
-                Console.WriteLine($"Module Mass: {moduleMass} | Fuel Required: {requiredFuel}");
+                intcodeArray[index] = Convert.ToInt32(stringIntcode);
+                index++;
             }
 
-            Console.WriteLine($"Total Required Fueld: {sum}");
+            var intcode = new Intcode();
+            
+            intcodeArray = intcode.doListThing(intcodeArray);
+
+            foreach (var intcodeElement in intcodeArray)
+            {
+                Console.Write($"{intcodeElement},");
+            }
         }
     }
 }
