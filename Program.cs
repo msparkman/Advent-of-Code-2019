@@ -20,13 +20,7 @@ namespace code
             }
 
             var intcode = new Intcode();
-            
-            intcodeArray = intcode.doListThing(intcodeArray);
-
-            foreach (var intcodeElement in intcodeArray)
-            {
-                Console.Write($"{intcodeElement},");
-            }
+            intcode.getNounAndVerb(intcodeArray);
         }
     }
 }
